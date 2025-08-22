@@ -1,102 +1,50 @@
-Netflix Data Analysis
+# Netflix Data Analytics: Exploratory Study of Public Streaming Data
 
-Summary:
-This project builds a MySQL-based analytics workflow over the public Netflix titles dataset. It covers schema design, bulk CSV ingest, data cleaning considerations, and a suite of exploratory queries to answer common content insights.
+## *Summary*
+This project implements a MySQL-driven analytics workflow on the public Netflix titles dataset. It covers database schema creation, secure bulk data loading and a comprehensive set of SQL queries to uncover insights on content distribution, popularity, and trends. The analysis addresses multiple facets such as content types, ratings, release patterns and regional productions.
 
-What it does:
+## *Problem Statement*
+To design and deploy a MySQL database solution that supports efficient ingestion, cleaning and exploratory analysis of Netflix show metadata, enabling data-driven decision-making on content composition, user interest and catalog performance. The goal is to provide actionable insights on streaming content dynamics to inform content curation and market-focused strategies.
 
-Creates a database (netflix_shows) and a normalized-ish table (netflix) to store show metadata, including show type, title, director, cast, country, release year, rating, duration, genres (listed_in), and description.
+## *Data Used*
+**Netflix Shows Dataset**:
+ Contains metadata for titles including show type (Movie or TV Show), title, director(s), cast members, country of origin, release year, rating, duration, genres (listed_in), description, date added, and other relevant fields.
 
-Loads data from a CSV via LOAD DATA INFILE (compatible with MySQL’s secure_file_priv setting).
 
-Runs a curated set of SQL analyses to explore catalog composition and trends.
+## *Methodology*
+- Created a dedicated database schema (netflix_shows) with a normalized-ish table (netflix) to capture show metadata in structured format.
 
-Key analyses included:
+- Imported data from a CSV file using MySQL’s LOAD DATA INFILE functionality, while ensuring secure file privileges were correctly configured.
 
-Movies vs TV Shows count
+- Applied data cleaning considerations for multi-valued fields such as genres, cast, directors, and countries to enable accurate analysis, recommending trimming and whitespace handling post-splitting.
 
-Aggregates content by show_type to understand catalog mix.
+- Employed a suite of exploratory SQL queries leveraging MySQL-specific functions, including window functions and string manipulation, to analyze the dataset across multiple dimensions.
 
-Most common rating per show type
+- Suggested adapting splitting techniques for multi-valued fields using JSON functions or recursive CTEs in MySQL given some example queries are based on PostgreSQL syntax.
 
-Uses window functions to rank ratings and pick the most frequent rating for Movies and TV Shows.
+## *Observations and Results*
+- Quantified mix of content types, distinguishing counts of movies versus TV shows to understand catalog composition.
 
-Movies released in a given year
+- Determined the most common rating per show type using ranking analytics for enhanced content classification.
 
-Parameterizable filter (example: 2020) to list all titles released that year.
+- Extracted and listed movies released in specific years for targeted temporal analyses.
 
-Top 5 countries by content volume
+- Identified top contributing countries by content volume with normalized attribution for multi-country productions.
 
-Splits multi-country rows to properly attribute counts per country and ranks the top contributors.
+- Calculated the longest movie based on parsed duration fields.
 
-Longest movie
+- Provided recent content additions leveraging date filters over the past five years to gauge catalog updates.
 
-Parses the duration field to identify the single longest movie by minutes.
+- Filtered shows by director and cast to surface insights on notable contributors such as Rajiv Chilaka and Salman Khan.
 
-Content added in the last 5 years
+- Analyzed long-running TV shows exceeding five seasons to identify established series.
 
-Converts textual date_added to date and filters by a rolling 5-year window.
+- Computed genre popularity by splitting multi-genre fields.
 
-Titles by a specific director (example: Rajiv Chilaka)
+- Assessed India’s yearly production share, highlighting top years of content output globally.
 
-Splits multi-director fields and filters for an exact match.
+- Isolated documentary movies and assessed metadata completeness by finding entries without directors.
 
-TV shows with more than 5 seasons
+- Categorized content safety based on thematic keywords in descriptions, labeling titles as “Bad” or “Good.”
 
-Parses duration for TV seasons and filters for long-running series.
-
-Content count by genre
-
-Splits listed_in (multi-genre field) and aggregates to show genre popularity.
-
-India’s yearly release share (Top 5 years)
-
-Computes each year’s share of India-produced titles relative to India’s total, returns top 5 years.
-
-All documentary movies
-
-Filters titles tagged as Documentaries.
-
-Content without a director
-
-Identifies incomplete or missing director metadata.
-
-Salman Khan movies in the last 10 years
-
-Filters cast and recent release_years to count appearances.
-
-Top 10 Indian actors by appearances
-
-Splits casts and ranks actors by count among India-produced titles.
-
-Content safety categorization
-
-Labels titles as “Bad” if description contains “kill” or “violence,” otherwise “Good,” and counts by category and show_type.
-
-Notes and considerations:
-
-The script uses MySQL-specific functions (e.g., STR_TO_DATE, SUBSTRING_INDEX, window functions). The splitting of comma-separated fields is demonstrated using UNNEST/STRING_TO_ARRAY, which are PostgreSQL patterns—swap in a MySQL-compatible splitter (e.g., JSON-based splitter, recursive CTE, or a numbers helper table) when running on MySQL.
-
-Ensure secure_file_priv allows CSV import path for LOAD DATA INFILE.
-
-Some text fields (date_added, duration, country, director, cast, listed_in) may need cleaning and trimming; whitespace handling is recommended after splitting.
-
-The schema keeps raw text fields to remain faithful to the CSV; for production, consider normalizing many-to-many fields (countries, directors, cast, genres).
-
-Deliverables:
-
-DDL to create the database and table
-
-CSV load command
-
-A collection of analysis queries answering common content questions
-
-How to run:
-
-Set secure_file_priv and place the CSV accordingly.
-
-Execute the DDL and LOAD DATA INFILE statements.
-
-Run the analysis queries section by section.
-
-If using MySQL, replace any non-MySQL splitting functions with MySQL-compatible approaches.
+- Ranked top Indian actors by appearance count within India-produced titles.
