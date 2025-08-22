@@ -1,43 +1,44 @@
-Project summary: Retail Sales Analysis
+# **Retail Sales Performance Analysis Using MySQL**
 
-A retail dataset needed to be structured, cleaned, and analyzed to uncover sales performance, customer behavior, and category trends. The goal was to build a MySQL database, ensure data quality, perform exploratory analysis and answer focused business questions that inform decisions such as seasonality, top customers and high value transactions.
+## *Summary*
+This project involved structuring, cleaning and analyzing a retail sales dataset within a MySQL environment. The analysis focused on uncovering sales trends, customer behavior, and product category performance through comprehensive data quality checks and exploratory querying.
 
-What was done:
+## *Problem Statement*
+The objective was to build a robust MySQL database to store retail transaction data, ensure data integrity through cleaning and perform targeted exploratory and business-oriented analyses. This facilitates understanding seasonality, identifying top customers, flagging high-value transactions and supporting data-driven decision-making to optimize merchandising, marketing, customer engagement and operational planning.
 
-Database setup: 
+## *Data Used*
+**Retail Transaction Data**: Includes transaction details such as date, time, product category, quantity, price, cost of goods sold (COGS), and total sales value.
 
-Created a dedicated MySQL database and a retail_sales table capturing transaction details (transaction/date/time, customer demographics, product category, quantity, pricing, COGS, and total sale).
+**Customer Demographics**: Data on customer age, gender, and other relevant profile attributes.
 
-Data quality checks and cleaning: 
+**Product Categories**: Classification of products for category-based analysis.
 
-Assessed record counts, unique customers, and distinct categories. Identified rows with missing key fields and removed incomplete records to maintain analytical integrity.
+## *Methodology*
+- Created a dedicated MySQL database and designed a retail_sales table to capture transactional and demographic details.
 
-Exploratory analysis:
+- Performed extensive data quality checks, removing records with missing critical fields to maintain analysis integrity.
 
-Quantified overall records, customer base, and category coverage. Verified table contents and  distributions to understand the dataset’s scope and structure.
+- Conducted exploratory data analysis to quantify records, customer base size, category coverage, and verify data distributions.
 
-Business analysis:
+- Analyzed sales using filters such as date ranges, product categories, and demographic segments to derive business insights.
 
-•	Filtered sales by specific dates and months to support calendar based insights.
-•	Isolated category specific performance (e.g., Clothing) with quantity thresholds to gauge demand.
-•	Aggregated sales by category to measure revenue and order volume contribution.
-•	Profiled customer demographics (e.g., average age for Beauty buyers) to understand audience characteristics.
-•	Flagged high value transactions to spotlight premium purchases.
-•	Counted transactions by gender within categories to explore behavioral differences.
-•	Assessed monthly performance and identified the best selling month per year to capture seasonality.
-•	Ranked customers by total spend to surface top buyers.
-•	Measured unique customer penetration by category to gauge breadth of appeal.
-•	Segmented orders by time of day shifts (Morning, Afternoon, Evening) to understand operational and demand patterns.
+- Applied aggregations to measure revenue and order volumes by category and customer.
 
-Results:
+- Profiled customers by demographics and purchasing behavior, identifying high-value transactions and top spenders.
 
-•	Data readiness: A clean, analysis ready retail_sales table with nulls removed from critical fields, enabling accurate aggregations and comparisons.
-•	Category performance: Clear view of category level revenue and order counts; identification of strong and weaker categories.
-•	Customer insights: Top spending customers highlighted; unique customer counts by category revealed reach; average age profiles informed targeting.
-•	High value sales: Transactions above key thresholds surfaced for premium focus.
-•	Time trends: Best performing months identified for each year, evidencing seasonality and supporting planning.
-•	Operational timing: Shift based order counts showed when demand concentrates across the day.
-•	Actionable takeaways: Findings support merchandising (focus on strong categories), marketing (target segments by age and category), customer programs (reward top buyers), and operations (staffing by busiest shifts and months).
+- Evaluated temporal trends including monthly performance and sales shifts by times of day to understand seasonality and operational demand.
 
+## *Observations and Results*
+- Delivered a clean, analysis-ready retail_sales table free from critical nulls, enabling accurate aggregations and comparisons.
 
-This deliverable demonstrates end to end SQL capability in MySQL: data modeling, cleaning, EDA, and business oriented analytics that translate to clear, decision ready insights.
+- Identified high-performing and underperforming product categories through revenue and order count metrics.
+
+- Highlighted top-spending customers and unique customer penetration across categories, informing marketing strategies.
+
+- Flagged transactions exceeding value thresholds to support premium-focused initiatives.
+
+- Revealed monthly peak sales periods, demonstrating clear seasonal trends to aid inventory and staff planning.
+
+- Mapped demand surges by time of day, supporting optimized shift scheduling for operational efficiency.
+
+- Generated actionable insights to enhance merchandising focus, targeted marketing campaigns, customer reward programs, and operational resource allocation.
